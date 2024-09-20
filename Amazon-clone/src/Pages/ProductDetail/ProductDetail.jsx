@@ -26,7 +26,8 @@ useEffect(() => {
       
       <ProductCard 
      Product = {product} />
-    
+    flex ={true}
+    productdDisc={true}
     </LayOut>
 
    
