@@ -1,21 +1,29 @@
-import React from 'react'
-import styles from "./header.module.css";
+import React, { useContext } from 'react'
+import classes from "./header.module.css";
 import { Link } from 'react-router-dom';
 import { BsSearch } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 import { BiCart } from "react-icons/bi";
 import Lowerheader from './Lowerheader';
+import { DataContext } from '../Dataprovider/Dataprovider';
+
+
 function Header() {
+const [{basket}, dispatch]= useContext(DataContext)
+// console.log(state.length)
+    const totalItem= basket?.reduce((amount,item)=>{
+        return item.amount+amount
+    },0)
   return (
-   <>
-    <section className={  styles.header_container
+   <section className={classes.fixed}>
+    <section className={  classes.header_container
     }>
         <div className=
-        {styles.logo_container}>
+        {classes.logo_container}>
             <Link to="/">
                 <img src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png" alt="amazon logo" />
             </Link>
-            <div className={styles.delivery}>
+            <div className={classes.delivery}>
             <span>
             <SlLocationPin />
             </span>
@@ -25,7 +33,7 @@ function Header() {
             </div>
             </div>
         </div>
-        <div className={styles.search}>
+        <div className={classes.search}>
             
             <select name="" id="">
                 <option value="">All</option>
@@ -34,8 +42,8 @@ function Header() {
             <BsSearch size={30}/>
         </div>
         
-        <div className={styles.order_container}>
-            <Link to ="" className={styles.language}>
+        <div className={classes.order_container}>
+            <Link to ="" className={classes.language}>
 
             <img src="https://image.shutterstock.com/image-vector/american-flag-usa-design-united-260nw-2477519645.jpg " alt="" />
                 <select name='' id=''>  
@@ -55,14 +63,14 @@ function Header() {
                 <p>Returns</p>
                 <span>& Orders</span>
             </Link>
-            <Link to ="/Cart" className={styles.cart}>
+            <Link to ="/Cart" className={classes.cart}>
                 <BiCart size={35}/>
-                <span>0</span>
+                <span>{totalItem}</span>
             </Link>
         </div>
     </section>
     <Lowerheader/>
-   </>
+   </section>
   )
 }
 

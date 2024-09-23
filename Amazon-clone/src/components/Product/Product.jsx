@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from "./product.module.css"
+import classes from "./product.module.css"
 import axios from "axios"
 import ProductCard from './ProductCard'
 function Product() {
@@ -17,9 +17,9 @@ setproducts(res.data)
 },[])
 
   return (
-    <section className={styles.product_conatiner}>
+    <section className={classes.products__container }>
       {
-  products.map((singleproduct)=>(<ProductCard Product={singleproduct} key= {singleproduct.id}/>
+  products.map((singleproduct)=>(<ProductCard Product={singleproduct} key= {singleproduct.id} reanderAdd={true}/>
   )) 
       }
     
