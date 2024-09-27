@@ -1,7 +1,8 @@
 import { Type } from "./Actiontype"
 
 export const initialstate={
-    basket:[]
+    basket:[],
+    user:null
 }
 
 export const reducer=(state,action)=>{
@@ -39,6 +40,10 @@ switch (action.type){
             ...state,
             basket:newBasket
         }
+        case Type.SET_USER:
+            return{
+                ...state,user:action.user
+            }
 
     default :
     return state;
